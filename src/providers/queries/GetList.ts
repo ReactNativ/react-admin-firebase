@@ -13,10 +13,12 @@ export async function GetList<T extends ra.Record>(
   params: ra.GetListParams,
   client: FireClient
 ): Promise<ra.GetListResult<T>> {
-  log('GetList', { resourceName, params });
+  log('GetList 123', { resourceName, params });
   const { rm, fireWrapper, options } = client;
 
   if (options?.lazyLoading?.enabled) {
+    console.log('....lazyLoading: ');
+
     const lazyClient = new FirebaseLazyLoadingClient(options, rm, client);
     return lazyClient.apiGetList<T>(resourceName, params);
   }
@@ -24,9 +26,12 @@ export async function GetList<T extends ra.Record>(
   const filterSafe = params.filter || {};
 
   const collectionQuery = filterSafe.collectionQuery;
+  console.log('....collectionQuery: ', collectionQuery);
   delete filterSafe.collectionQuery;
 
   const r = await rm.TryGetResource(resourceName, 'REFRESH', collectionQuery);
+  console.log('...TryGetResource : ', r);
+
   const data = r.list;
   if (params.sort != null) {
     const { field, order } = params.sort;

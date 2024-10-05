@@ -40,9 +40,11 @@ function basicSort(aValue: any, bValue: any, isAsc: boolean) {
 }
 
 export function filterArray(
+
   data: Array<{}>,
   searchFields?: { [field: string]: string | number | boolean | null }
 ): Array<{}> {
+  console.log('...filterArray');
   if (!searchFields || isEmpty(searchFields)) {
     return data;
   }
@@ -66,6 +68,7 @@ export function doesRowMatch(
   searchField: string,
   searchValue: any
 ): boolean {
+  console.log('...doesRowMatch: ', searchField, searchValue);
   const searchThis = get(row, searchField);
   const bothAreFalsey = !searchThis && !searchValue;
   if (bothAreFalsey) {
