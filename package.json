@@ -1,7 +1,11 @@
 {
-  "name": "react-admin-firebase",
+  "name": "react-admin-firebase-nn",
   "description": "A firebase data provider for the React Admin framework",
   "version": "4.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ReactNativ/react-admin-firebase.git"
+  },
   "peerDependencies": {
     "firebase": "^9.6.4",
     "react": "17.x || 18.x",
@@ -35,8 +39,8 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "4.5.5"
   },
-  "homepage": "https://github.com/benwinding/react-admin-firebase",
-  "email": "hello@benwinding.com",
+  "homepage": "https://github.com/ReactNativ/react-admin-firebase.git",
+  "email": "sadeh.na@gmail.com",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist && microbundle",
