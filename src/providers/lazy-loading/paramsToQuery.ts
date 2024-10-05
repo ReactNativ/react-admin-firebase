@@ -49,12 +49,12 @@ export async function paramsToQuery<
 
   const paginationConstraints = options.pagination
     ? await getPaginationConstraints(
-        collection,
-        [...filterConstraints, ...sortConstraints],
-        params,
-        resourceName,
-        flogger
-      )
+      collection,
+      [...filterConstraints, ...sortConstraints],
+      params,
+      resourceName,
+      flogger
+    )
     : [];
 
   return {
@@ -75,10 +75,10 @@ export function getFiltersConstraints(filters: {
   return Object.entries(filters).flatMap(([fieldName, fieldValue]) => {
     if (Array.isArray(fieldValue)) {
       return [where(fieldName, 'array-contains-any', fieldValue)];
-    } else if (Object.keys(filters).length === 1 && isNaN(fieldValue)) {
+    } else if (Object.keys(filters).length === 2) {
       return [
         where(fieldName, '>=', fieldValue),
-        where(fieldName, '<', fieldValue + 'z'),
+        where(fieldName, '<', fieldValue),
       ];
     } else {
       return [where(fieldName, '==', fieldValue)];
@@ -138,9 +138,9 @@ export function getFullParamsForQuery<
     ...reactAdminParams,
     filter: softdeleteEnabled
       ? {
-          deleted: false,
-          ...reactAdminParams.filter,
-        }
+        deleted: false,
+        ...reactAdminParams.filter,
+      }
       : reactAdminParams.filter,
   };
 }
